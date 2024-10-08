@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator Suhu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        input, select, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <h1>Kalkulator Suhu</h1>
+        <form id="tempForm">
+            <input type="number" id="tempInput" placeholder="Enter temperature" required>
+            <select id="tempUnit">
+                <option value="Celsius">Celsius</option>
+                <option value="Fahrenheit">Fahrenheit</option>
+            </select>
+            <button type="submit">Konversi</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.getElementById('tempForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var temp = parseFloat(document.getElementById('tempInput').value);
+            var unit = document.getElementById('tempUnit').value;
+            var result = '';
+
+            if (isNaN(temp)) {
+                result = 'Please enter a valid number!';
+            } else {
+                if (unit === 'Celsius') {
+                    var fahrenheit = (temp * 9/5) + 32;
+                    result = `${temp}° Celsius is ${fahrenheit.toFixed(2)}° Fahrenheit.`;
+                } else {
+                    var celsius = (temp - 32) * 5/9;
+                    result = `${temp}° Fahrenheit is ${celsius.toFixed(2)}° Celsius.`;
+                }
+            }
+            
+            document.getElementById('result').innerText = result;
+        });
+    </script>
+</body>
+</html>
