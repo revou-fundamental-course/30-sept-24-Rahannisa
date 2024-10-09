@@ -1,21 +1,12 @@
-body {
+<style>
+  body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    text-align: center;
-    margin-top: 50px;
-}
-#calculator {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}
-input, select, button {
-    margin: 10px;
-    padding: 10px;
-    font-size: 16px;
-}
-#result {
+  }
+  form {
     margin-top: 20px;
-}
+  }
+  label, input, select, button {
+    display: block;
+    margin: 10px 0;
+  }
+</style>
