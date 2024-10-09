@@ -1,21 +1,43 @@
-document.getElementById('tempForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+<script>
+  function convertTemp() {
+    var temp = parseFloat(document.getElementById('temperature').value);
+    var fromUnit = document.getElementById('fromUnit').value;
+    var toUnit = document.getElementById('toUnit').value;
+    var result;
 
-    var temp = parseFloat(document.getElementById('tempInput').value);
-    var unit = document.getElementById('tempUnit').value;
-    var result = '';
-
-    if (isNaN(temp)) {
-        result = 'Please enter a valid number!';
-    } else {
-        if (unit === 'Celsius') {
-            var fahrenheit = (temp * 9/5) + 32;
-            result = `${temp}° Celsius is ${fahrenheit.toFixed(2)}° Fahrenheit.`;
-        } else {
-            var celsius = (temp - 32) * 5/9;
-            result = `${temp}° Fahrenheit is ${celsius.toFixed(2)}° Celsius.`;
-        }
+    // Conversion logic
+    if (fromUnit === 'C') {
+      if (toUnit === 'F') {
+        result = (temp * 9/5) + 32 + ' °F';
+      } else if (toUnit === 'K') {
+        result = temp + 273.15 + ' K';
+      } else if (toUnit === 'R') {
+        result = temp * 4/5 + ' °R';
+      } else {
+        result = temp + ' °C';
+      }
+    } else if (fromUnit === 'F') {
+      if (toUnit === 'C') {
+        result = (temp - 32) * 5/9 + ' °C';
+      } else if (toUnit === 'K') {
+        result = (temp - 32) * 5/9 + 273.15 + ' K';
+      } else if (toUnit === 'R') {
+        result = (temp - 32) * 4/9 + ' °R';
+      } else {
+        result = temp + ' °F';
+      }
+    } else if (fromUnit === 'K') {
+      if (toUnit === 'C') {
+        result = temp - 273.15 + ' °C';
+      } else if (toUnit === 'F') {
+        result = (temp - 273.15) * 9/5 + 32 + ' °F';
+      } else if (toUnit === 'R') {
+        result = (temp - 273.15) * 4/5 + ' °R';
+      } else {
+        result = temp + ' K';
+      }
     }
-    
-    document.getElementById('result').innerText = result;
-});
+
+    document.getElementById('result').innerText = 'Result: ' + result;
+  }
+</script>
